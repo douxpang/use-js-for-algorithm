@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<style>
+* {
+margin: 0;
+padding: 0;
+}
+li {
+list-style: none;
+}
+#ul1 {
+margin: 20px auto;
+overflow: hidden;
+border: 1px #000 solid;
+border-right: none;
+border-bottom: none;
+}
+#ul1 li {
+float: left;
+border: 1px #000 solid;
+border-left: none;
+border-top: none;
+text-align: center;
+line-height: 50px;
+}
+</style>
+<body>
+<ul id="ul1">
+</ul>
+</body>
+<script >
+let oUl = document.getElementById('ul1')
+let aLi = document.getElementsByTagName('li')
+let sizeGrid = 50
+let size = 8
+
+let len = size * size
+oUl.style.width = size * (sizeGrid + 1) + 'px'
+for (let i = 0; i < len; i++) {
+  let oLi = document.createElement('li')
+  oLi.style.width = sizeGrid + 'px'
+  oLi.style.height = sizeGrid + 'px'
+  oUl.appendChild(oLi)
+}
+
+let row = 0
+let col = 0
+let min = 0
+let max = size - 1
+
+for (let i = 0; i < len; i++) {
+  aLi[row * size + col].innerHTML = i
+  if (row == min && col <  max) { // 拐点
+    col = col + 1
+  } else if (col == max && row < max) { // 拐点
+    row = row + 1
+  } else if (row == max && col > min) { // 拐点
+    col = col - 1
+  } else if (col == min && row > min) { // 拐点
+    row = row - 1
+  }
+  if (row - 1 == min && col == min) { // 缩短环数
+    min = min + 1
+    max = max - 1
+  }
+}
+
+</script>
+</html>

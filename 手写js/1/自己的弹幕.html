@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin : 0;
+            padding: 0
+        }
+        .wrap {
+            width:100%;
+            height:100%
+        }
+        .client {
+            width:100%;
+            height:90vh
+        }
+        .put {
+            height:10vh;
+            background-color:blue;
+        }
+        .abc {
+            position: absolute;
+            /* left: 0; */
+            /* visibility: hidden; */
+            /* other decorate style */
+            animation: barrage 5s linear 0s;
+        }
+        @keyframes barrage {
+        from {
+          left: 100%;
+          transform: translateX(0);
+        }
+        to {
+          left: 0;
+          transform: translateX((-100%));
+        }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="client" id = "123"></div>
+        <div class="put">
+            <input type="text">
+            <button>发送</button>
+        </div>
+    </div>
+    <script>
+        
+        let input = document.querySelector('input')
+        let oBtn = document.querySelector('button')
+        oBtn.onclick = function() {
+            var cli = document.getElementById('123')
+            let span = document.createElement('span')
+            let text = input.value
+            var screenW = window.offsetWidth;
+            var screenH = cli.offsetHeight;
+            var max = Math.floor(screenH / 30);
+            var height = 10 + 30 * (parseInt(Math.random() * (max + 1)) - 1);
+            input.value = ''
+            span.innerHTML = text
+            span.className = 'abc'
+            span.style.left = screenW + 'px';
+            span.style.top = height + 'px';
+            
+            cli.appendChild(span)
+        }
+    </script>
+</body>
+</html>

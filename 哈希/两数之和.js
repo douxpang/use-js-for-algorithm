@@ -47,10 +47,11 @@ var twoSum = function(nums, target) {
     return ret
  };
 
-
-
- //方法三
- //可以在方法二基础上用Map实现 只要注意Map的语法 set 和 get就可以
-
-
-
+//三
+ var twoSum = function(nums, target) {
+    let map = {};
+    for(let i = 0; i < nums.length; i++) {
+        if(map[nums[i]] !== undefined) return [i, map[nums[i]]];
+        else map[target - nums[i]] = i;
+    }
+};
