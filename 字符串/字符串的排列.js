@@ -1,3 +1,5 @@
+// 给出一个字符串  得出他们所有的排列组合
+
 function Permutation(str) {
     const result = [];
     if (str) {
@@ -10,6 +12,7 @@ function Permutation(str) {
 
   function PermutationCore(queue, result, temp = "", current = "") {
     current += temp;   //current是当前队列   temp是当前的数
+
     if (queue.length === 0) {
       result.push(current);       //当排完三个后 加入result
       return;
@@ -21,3 +24,4 @@ function Permutation(str) {
     }
   }
 console.log(Permutation('123'))
+
