@@ -4,8 +4,6 @@
 
 // 返回载到每一个人所需的最小船数。(保证每个人都能被船载)。
 
- 
-
 // 示例 1：
 
 // 输入：people = [1,2], limit = 3
@@ -24,16 +22,16 @@
 // 输出：4
 // 解释：4 艘船分别载 (3), (3), (4), (5)
 
-
-var numRescueBoats = function(people, limit) {
-    people = people.sort((a, b) => a - b)
-    let res = 0;
-    while(people.length) {
-      let heaviest = people.pop()   //每次取最沉的
-      if (people.length > 0 && heaviest + people[0] <= limit) {
-        people.shift()
-      }
-      res++
+var numRescueBoats = function (people, limit) {
+  people = people.sort((a, b) => a - b);
+  let res = 0;
+  while (people.length) {
+    let heaviest = people.pop(); //每次取最沉的
+    if (people.length > 0 && heaviest + people[0] <= limit) {
+      people.shift();
     }
-    return res
-  };
+    res++;
+  }
+  return res;
+};
+

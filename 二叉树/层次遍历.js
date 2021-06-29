@@ -27,3 +27,24 @@ var levelOrder = function(root) {
     }
     return res
 };
+
+
+
+
+function order(root) {
+    if(!root) {
+        return []
+    }
+    let res = [],deep = 0;
+
+    let queue = [root];
+
+    while(queue.length) {
+        let cur = queue.shift();
+        res[deep].push(cur.val);
+        if(cur.left) queue.push(cur.left);
+        if(cur.right) queue.push(cur.right);
+        deep++
+    }
+
+}

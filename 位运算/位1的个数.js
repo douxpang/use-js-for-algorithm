@@ -9,6 +9,7 @@
 // 输入：00000000000000000000000000001011
 // 输出：3
 
+// 用正则表达式 match出来一个1的数组
 
 function hammingWeight(n) {
     let str = n.toString(2)
@@ -16,10 +17,11 @@ function hammingWeight(n) {
     let res = str.match(reg).length
     return res
 }
-console.log(hammingWeight(00000000000000000000000000001011))
+console.log(hammingWeight(0000000001100000000000000000001011))
+
 
 var hammingWeight1 = function(n) {
     return n.toString(2).split('').reduce((t,n) => +t + +n)
     
 };
-console.log(hammingWeight1(00000000000000000000000000001011))
+console.log(hammingWeight1(00000000000001100000000000001011))

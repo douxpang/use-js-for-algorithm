@@ -10,30 +10,46 @@
 //  [ 7, 6, 5 ]
 // ]
 
-var generateMatrix = function(n) {
-    let res = []
-    for(let i = 0;i < n;i++) {
-        res[i] = []
+var generateMatrix = function (n) {
+    var res = new Array();
+    for (var i = 0; i < n; i++) res[i] = new Array();
+    let top = 0,
+        left = 0,
+        bottom = n - 1,
+        right = n - 1;
+    let count = 1;
+    let len = Math.pow(n,2);
+
+    for(let j = 0,k = 0,turn = 'right';count <= len;count++){
+        res[j][k] = count;
+        if(turn === 'right') {
+            k++;
+            if(k === right) {
+                top++
+                turn = 'down'
+            }
+        } else if(turn === 'down') {
+            j++;
+            if(j === bottom) {
+                right--
+                turn = 'left'
+            }
+        } else if(turn === 'left') {
+            k--;
+            if(k === left) {
+                bottom--
+                turn = 'up'
+            }
+        } else if(turn === 'up') {
+            j--;
+            if(j === top) {
+                left++
+                turn = 'right'
+            }
+        }
     }
-    let top = 0,left = 0,bottom = n - 1,right = n - 1
-    let count = 0
-    while(count < n * n) {
-        for(let i = left;i <= right;i++) {
-            res[top][i] = ++count
-            top++
-        }
-        for(let i = top;i <= bottom;i++) {
-            res[i][right] = ++count
-            right--
-        }
-        for(let i = right;i >= left;i--) {
-            res[bottom][i] = ++count
-            bottom--
-        }
-        for(let i = 0;i >= top;i--) {
-            res[i][left] = ++count
-            left++
-        }
-    }
-    return res
+
+    return res;
 };
+
+console.log(generateMatrix(3));

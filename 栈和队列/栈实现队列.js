@@ -1,3 +1,5 @@
+// 用两个栈实现队列
+
 var MyQueue = function() {
     this.stack1 = [];
     this.stack2 = [];
