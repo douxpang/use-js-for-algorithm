@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="test">
+        <li>
+            <p>11111111111</p>
+        </li>
+        <li>
+            <div>
+                <span>22222222</span>
+                
+            </div>
+        </li>
+        <li>
+            <span>3333333333</span>
+        </li>
+        <li>4444444</li>
+
+        <div>55555555555555555555555</div>
+    </ul>
+
+    <script>
+        var oUl = document.getElementById('test');
+        // oUl.addEventListener('click',function(ev){
+        //     let ev = ev || window.event;
+        //     var target = ev.target;
+        //     while(target !== oUl ){
+        //         if(target.tagName.toLowerCase() == 'li'){
+        //             console.log('li click~');
+        //             break;
+        //         }
+        //         target = target.parentNode;
+        //     }
+        // })
+        
+
+
+        // oUl.addEventListener('click',function(e) {
+        //     let ev = e || window.event;
+        //     let target = ev.target;
+
+        //     while(target.tagName.toLowerCase() !== 'ul') {
+        //         if(target.tagName.toLowerCase() == 'li') {
+        //             alert(target.innerHTML)
+        //         }
+        //         target = target.parentNode
+        //     }
+
+        // })
+
+        //  写函数 然后 可以
+        // function fn(ele,selector,type,fn) {
+        //     ele.addEventListener(type,function(e) {
+        //         e = e || window.event;
+        //         let target = e.target;
+
+        //         let selectors = document.querySelectorAll('selector');
+        //         selectors = [].slice.call(selectors);
+
+        //         if(selectors.includes(target)) {
+        //             fn.call(target,e)
+        //         } else {
+        //             fn.call(target.parentNode,e)
+        //         }
+                
+        //     })
+        // }
+
+        // fn(oUl,'li','click',function(e) {
+        //     alert(123)
+        // },)
+
+
+
+        // function fn(element,selector,type,callback,target = null) {
+
+        //     if(target == element) {
+        //         return
+        //     }
+        //     element.addEventListener(type,function(e) {
+        //         e = e || window.event;
+        //         target = e.target;
+
+        //         let selectors = document.querySelectorAll(selector);
+        //         selectors = [].slice.apply(selectors);
+
+        //         if(selectors.includes(target)) {
+        //             alert('直接选择')
+        //             callback.call(target,e);
+                    
+        //             //console.log('??')
+        //             return
+        //         } else {
+        //             console.log(target,target.parentNode)
+        //             fn(element,selector,type,callback,target.parentNode)
+        //             console.log('??')
+        //             // console.log(selectors)
+        //             //fn(element,selector,type,callback,target.parentNode)
+        //         }
+        //     })
+        // }
+        //     window.onload = function() {
+        //         console.log()
+        //     }
+
+        // fn(oUl,'li','click',function(e) {
+        //     console.log(e)
+        //     alert(123)
+        // })
+
+
+
+
+        
+
+
+        // function fn(element, eventType, selector, fn) {
+        //     element.addEventListener(eventType, e => {
+        //         let el = e.target
+        //         //console.log(el,el.matches(selector))
+        //         while (!el.matches(selector)) {    // 这里传的应该是判断 找没找到想要的li
+        //             if (element === el) {
+        //                 el = null
+        //                 break
+        //             }
+        //             el = el.parentNode
+        //         }
+        //         el && fn.call(el, e, el)
+        //     })
+        //     return element
+        // }
+
+
+
+
+
+        function fn(element,type,selector,callback) {
+            element.addEventListener(type,function(e) {
+                e = e || window.event;
+                let target = e.target;
+
+                while(!target.matches(selector)) {
+                    if(element == target) {
+                        target =null;
+                        break;3
+                    }
+                    target = target.parentNode
+                }
+                target && callback.call(target,e)
+            })
+            return element
+        }
+        fn(oUl,'click','li',function(e) {
+            alert('新的')
+        })
+
+
+    </script>
+</body>
+</html>

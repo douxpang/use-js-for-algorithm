@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 定义路由 -->
+    <li><a href="#/home">home</a></li>
+    <li><a href="#/about">about</a></li>
+
+    <!-- 渲染的ui -->
+    <div id="view"></div>
+
+    <script>
+        //  真是 太神奇 太厉害了    原文 https://www.cnblogs.com/lguow/p/10921564.html
+
+        let view = document.getElementById('view');
+
+        window.addEventListener('DOMContentLoaded',function() {
+            onHashChange()
+        })
+        window.addEventListener('hashchange',onHashChange)
+        function onHashChange() {
+            switch(location.hash) {
+                //https://www.cnblogs.com/lguow/p/10921564.html  location
+                case '#/home':
+                    view.innerHTML = 'home'
+                    return
+                case '#/about':
+                    view.innerHTML = 'about'
+                    return
+                default:
+                    return
+            }
+        }
+    </script>
+</body>
+</html>

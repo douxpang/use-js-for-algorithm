@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text">
+    <p></p>
+    <script>
+        let input = document.querySelector('input');
+        let p = document.querySelector('p');
+        let obj = {};
+        let new1 = new Proxy(obj, {
+            get(target,key,receiver) {
+                console.log('get',target,key,receiver);
+                return Reflect.get(target,key,receiver)
+            },
+            set(target,key,value,receiver) {
+                console.log('setting',target,key,value,receiver);
+                if(key === 'text') {
+                    p.innerHTML = value;
+                    input.value = value;
+                }
+                return Reflect.set(target,key,value,receiver)
+            }
+        })
+        input.addEventListener('keyup',function(e) {
+            new1.text = e.target.value;
+        })
+    </script>
+</body>
+</html>

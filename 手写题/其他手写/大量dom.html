@@ -1,0 +1,64 @@
+<!-- // 案例：如何在页面元素ul中一次性插入30000个li标签，保证页面体验流畅呢？
+
+
+
+// 减少 DOM 操作次数的良方是 DocumentFragment；
+
+// 缩短循环时间需要考虑使用分治的思想把 30000 个 <li> 分批次插入到页面中，每次插入的时机是在页面重新渲染之前，采用 requestAnimationFrame 。 -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul id="list"></ul>
+    <script>
+      let container = document.getElementById("list");
+
+      if (!container) {
+        return;
+      }
+
+      const total = 3000;
+
+      const size = 4;
+
+      const times = total / size;
+
+      let doneTime = 0;
+
+      function addItems() {
+        let fragment = document.createDocumentFragment();
+        for (let i = 0; i < size; i++) {
+          const nItem = document.createElement("li");
+          nItem.innerText = doneTime * size + i + 1;
+          fragment.appendChild(nItem);
+        }
+        // 这样 每次批处理只会操作一次DOM
+        container.appendChild(fragment);
+        doneTime++;
+        doneAppend();
+      }
+
+      function doneAppend() {
+        if (doneTime < times) {
+          console.log(123);
+          window.requestAnimationFrame(addItems);
+        }
+      }
+
+      doneAppend();
+
+      // window.requestAnimationFrame() 告诉浏览器——你希望执行一个动画，并且要求浏览器在下次重绘之前调用指定的回调函数更新动画。该方法需要传入一个回调函数作为参数，该回调函数会在浏览器下一次重绘之前执行
+      // ndContainer.addEventListener("click", function (e) {
+      //   const target = e.target;
+      //   if (target.tagName === "LI") {
+      //     alert(target.innerHTML);
+      //   }
+      // });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+     <style>
+         * {
+             margin: 0px;
+             padding: 0px;
+         }
+
+         .box {
+             width: 300px;
+             height: 300px;
+             background-color: gold;
+             margin: 80px auto;
+             position: relative;
+         }
+
+         .box .boxer {
+             width: 80px;
+             height: 80px;
+             background-color: greenyellow;
+             position: absolute;
+            
+
+         }
+     </style>
+</head>
+
+
+     <body>
+         <div class="box">
+             <div class="boxer"></div>
+         </div>
+         <script>
+             //需要鼠标在移动的div任意位置都可以移动，不是之前的单纯鼠标的坐标
+             //相当于的到移动div的偏移量，鼠标的坐标值，减去它offsetLeft的值---参照定位
+             //获取
+             var boxer = document.querySelector(".boxer")
+             var box = document.querySelector(".box")
+             //绑定按下事件
+             boxer.onmousedown = function (event) {
+                 var event = event || window.event //event的兼容,同时得到clientX,的值
+                 var x = event.clientX - boxer.offsetLeft
+                 console.log(x)
+                 var y = event.clientY - boxer.offsetTop //得到小段的偏移
+                 document.onmousemove = function (event) {
+                     var xx = event.clientX - x //当移动的时候，用它的鼠标值减去偏移量
+                     var yy = event.clientY - y
+                     if (xx <= 0) { //判定边界值，=0，就在最边上了，
+                         xx = 0
+                     }
+                     if (xx >= box.offsetWidth - boxer.offsetWidth) { //大于整个盒子的宽度-小盒子的宽度
+                         xx = box.offsetWidth - boxer.offsetWidth
+                     }
+                     if (yy <= 0) {
+                         yy = 0
+                     }
+                     if (yy >= box.offsetHeight - boxer.offsetHeight) {
+                         yy = box.offsetHeight - boxer.offsetHeight
+                     }
+
+
+
+                     boxer.style.left = xx + "px"
+                     boxer.style.top = yy + "px"
+                 }
+                 boxer.onmouseup = function () {
+                     document.onmousemove = null //鼠标抬起时，清空
+                     boxer.onmouseup = null
+                 }
+             }
+         </script>
+        
+</body>
+</html>

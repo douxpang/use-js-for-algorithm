@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrap {
+            display: flex;
+            width: 100%;
+            height: 400px;
+        }
+        .left {
+            width:300px;
+            background-color: red;
+            flex-shrink: 0; 
+            /*     防止过窄 左边崩溃 */
+        }
+        .right {
+           /* flex-grow: 1; */
+            width:100%;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+    <script>
+       // css 如何实现左侧固定300px，右侧自适应的布局
+    </script>
+</body>
+</html>

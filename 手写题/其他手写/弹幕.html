@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding:0;
+        }
+        .wrap {
+            width:100%;
+            height:100%;
+        }
+
+        #client {
+            width: 100%;
+            height: 90vh;
+        }
+        .input {
+            height: 10vh;
+            background-color: skyblue;
+        }
+
+        .item {
+            position: absolute;
+            animation: biBi 5s linear 0s;
+        }
+
+        @keyframes biBi {
+            from {
+                left: 100%;
+                transform: translateX(100%);
+            }
+            to {
+                left: 0;
+                transform: translateX(-100%);
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div id="client">
+
+        </div>
+        <div class=input>
+            <input type="text">
+            <button>发送</button>
+        </div>
+    </div>
+    <script>
+        let client = document.getElementById('client');
+        let input = document.querySelector('input');
+        let button = document.querySelector('button');
+
+        button.onclick = function() {
+            let span = document.createElement('span');
+
+            let text = input.value;
+
+            let screenW = window.offsetWidth;
+            let screenY = client.offsetHeight;
+
+            let maxHeight = Math.floor(screenY / 30);
+
+            let height = 10 + 30 * (parseInt(Math.random() * (maxHeight + 1)) - 1);
+
+            input.value = '';
+            span.innerHTML = text;
+            span.className = 'item';
+            span.style.width = screenW;
+            span.style.top = height;
+
+            client.appendChild(span)
+        }
+    </script>
+</body>
+</html>

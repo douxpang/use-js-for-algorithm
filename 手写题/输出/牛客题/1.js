@@ -1,0 +1,1 @@
+console.log(null === null)  // 是相等的 只有 NAN === NAN 是错误

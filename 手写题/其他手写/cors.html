@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let xhr = new XMLHttpRequest();
+        document.cookie = 'name=phr';
+
+        xhr.open('POST','http://localhost:3001/getData',true);
+
+        xhr.setRequestHeader('name','phr');
+
+        xhr.onreadystatechange = function() {
+            if(xhr.readyState === 4) {
+                if((xhr.status > 200 && xhr.status < 300)) {
+
+                }
+            }
+        }
+        xhr.send();
+
+
+
+        // express 部分
+
+
+        let express = require('express');
+        let app = express();
+
+        app.use(function(req,res,next) {
+            res.setHeader('Access-Control-Allow-Origin', '*');
+
+            // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+            next();
+        })
+
+        app.post('/getData',function(req,res) {
+            res.end('回复')
+        })
+
+        app.listen(4000)
+    </script>
+</body>
+</html>

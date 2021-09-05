@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="lb">
+      <div class="lbt">
+        <img src="bg.jpg" class="imgs" /> 　　　　
+        <img src="bg2.jpg" class="imgs" />
+      </div>
+      <button>下一个</button>
+    </div>
+    <script>
+      //自动轮播代码
+
+      var imgs = document.getElementsByClassName("imgs");
+      let button = document.querySelector('button');
+      var m = 0;
+
+      setInterval(lbu, 3000);
+      function lbu() {
+        for (var i = 0; i < imgs.length; i++) {
+          imgs[i].style.display = "none";
+        }
+        imgs[m].style.display = "block";
+        m++;
+        if (m > imgs.length - 1) {
+          m = 0;
+        }
+      }
+    </script>
+  </body>
+</html>

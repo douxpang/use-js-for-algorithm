@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body, html {
+    margin: 0;
+}
+    table {
+        border-collapse: collapse;
+        table-layout: fixed;
+        margin: 10px auto;
+    }
+    td {
+        border: 1px solid #E1E1E1;
+        padding: 0;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+    }
+    .current {
+        background: #1D2088;
+    }
+    .wrap {
+        background: #00A0E9;
+    }
+    </style>
+</head>
+<body>
+    <table id="jsLayout">
+        <tbody>
+            <tr><td class="current"></td><td class="wrap"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="wrap"></td><td class="wrap"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+    </table>
+    <script>
+        function bind(index) {
+    var tdEles = document.getElementById("jsLayout").getElementsByTagName('td');
+    for(var i=0,len1=tdEles.length;i<len1;i++){
+        (function(index){
+            tdEles[index].onclick = function(){
+                var row = parseInt(index/10);
+                var col = index%10;                 
+                for(var j=0,len2=tdEles.length;j<len2;j++){
+                    tdEles[j].className = "";
+                }
+                  
+                var prevRow = row-1>=0? row-1 : row;
+                var nextRow = row+1<=9? row+1 : row;
+                var prevCol = col-1>=0? col-1 : col;
+                var nextCol = col+1<=9? col+1 : col;
+                tdEles[prevRow*10+prevCol].className = "wrap";
+                tdEles[prevRow*10+col].className = "wrap";
+                tdEles[prevRow*10+nextCol].className = "wrap";
+                  
+                tdEles[row*10+prevCol].className = "wrap";
+                tdEles[row*10+col].className = "wrap";
+                tdEles[row*10+nextCol].className = "wrap";
+                  
+                tdEles[nextRow*10+prevCol].className = "wrap";
+                tdEles[nextRow*10+col].className = "wrap";
+                tdEles[nextRow*10+nextCol].className = "wrap";
+                this.className = "current";
+            }
+        })(i)
+          
+    }
+}
+    </script>
+</body>
+</html>

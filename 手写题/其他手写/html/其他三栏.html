@@ -1,0 +1,133 @@
+https://www.jianshu.com/p/3046eb050664
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+
+        flex
+
+
+        .wrap {
+            display: flex;
+            width:100%;
+            height:500px;
+        }
+        .mid {
+            background-color: red;
+            order: 2; 
+            width:100%;
+        }
+        .left {
+            width: 200px;
+            order: 1;
+            background-color: blue;
+            flex-shrink: 0;
+        }
+        .right {
+            width: 200px;
+            order: 3;
+            flex-shrink: 0;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="mid">center</div>
+        <div class="left">left</div>
+        <div class="right">right</div>
+    </div>
+</body>
+</html> -->
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        用grid
+
+
+
+        .wrap {
+            width:100%;
+            display:grid;
+            grid-template-columns: 200px auto 200px;
+            grid-template-rows: 200px;
+        }
+        .left {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="left">left1</div>
+        <div class="center">center1</div>
+        <div class="right">right1</div>
+    </div>
+</body>
+</html> -->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width:100%;
+            overflow: hidden;
+            position: relative;
+        }
+        .container > div {
+            display: table-cell;
+            height:100%
+        }
+        .center {
+            margin: 0 200px;
+            width: 100%;
+            background: red;
+        }
+        .left {
+            width: 200px;
+            min-width: 200px;
+            background-color: green;
+        }
+        .right {
+            width: 200px;
+            min-width: 200px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left">
+            left
+        </div>
+        <!-- 这时的center要放在中间 -->
+        <div class="center">
+            center
+        </div>
+        <div class="right">
+            right
+        </div>
+    </div>
+</body>
+</html>
